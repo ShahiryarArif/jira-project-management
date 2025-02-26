@@ -3,4 +3,5 @@
 * Tailwind
 * ShadCN
 * React-Icons
+* React Hook Form
 
