@@ -1,3 +1,5 @@
+"use client";
+
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +16,7 @@ import { useResgister } from "../api/use-register";
 
 
 export const SignUpCard = () => {
-    const { mutate } = useResgister();
+    const { mutate, isPending } = useResgister();
 
     const form = useForm<z.infer<typeof registerSchema>>({
         resolver: zodResolver(registerSchema),
@@ -103,8 +105,8 @@ export const SignUpCard = () => {
                         <Button
                             className="w-full"
                             size="lg"
-                            disabled={false}
-                        >Login</Button>
+                            disabled={isPending}
+                        >Register</Button>
                     </form>
                 </Form>
             </CardContent>
@@ -116,7 +118,7 @@ export const SignUpCard = () => {
                     variant="secondary"
                     className="w-full"
                     size="lg"
-                    disabled={false}
+                    disabled={isPending}
                 >
                     <FcGoogle className="mr-2 size-5" />
                     Login with Google
@@ -125,7 +127,7 @@ export const SignUpCard = () => {
                     variant="secondary"
                     className="w-full"
                     size="lg"
-                    disabled={false}
+                    disabled={isPending}
                 >
                     <FaGithub className="mr-2 size-5" />
                     Login with Github
